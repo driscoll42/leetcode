@@ -35,7 +35,8 @@ class ListNode:
 
 class Solution:
     def middleNode(self, head: ListNode) -> ListNode:
-        '''midNode = head
+        '''
+        midNode = head
         cnt = 0
         while True:
             cnt += 1
@@ -46,7 +47,8 @@ class Solution:
             if head.next is None:
                 break
             head = head.next
-        return midNode'''
+        return midNode
+        '''
         slow = head
         while head and head.next:
             head = head.next.next
