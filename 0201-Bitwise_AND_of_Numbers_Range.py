@@ -14,18 +14,12 @@ Input: [0,1]
 Output: 0
 '''
 import math
+import time
 
 
 class Solution:
     def rangeBitwiseAnd(self, m: int, n: int) -> int:
-        '''# Naive O(n) solution
-        returnval = m
-        if m != 0:
-            for x in range(m, n + 1):
-                print(x)
-                returnval &= x
-        return returnval'''
-        # This one should be closer to O(n/2**m)
+        # This one should be closer to O(n/2**n) on average, but O(n) worst case
         if not m or not n or m == 0:
             return 0
         mexp = int(math.log(m, 2))
@@ -38,16 +32,32 @@ class Solution:
                 returnval &= x
             return returnval
 
+    def rangeBitwiseAnds(self, m: int, n: int) -> int:
+        # Premium solution, hella efficient, I think O(log n)
+        while m < n:
+            print(n)
+            n = n & (n - 1)
+        return m & n
 
-print(Solution.rangeBitwiseAnd("", 100, 200) == 0)
-print(Solution.rangeBitwiseAnd("", 1, 2) == 0)
-print(Solution.rangeBitwiseAnd("", 3, 4) == 0)
-print(Solution.rangeBitwiseAnd("", 7, 8) == 0)
-print(Solution.rangeBitwiseAnd("", 5, 7) == 4)
-print(Solution.rangeBitwiseAnd("", 0, 1) == 0)
-print(Solution.rangeBitwiseAnd("", 128, 240) == 128)
-print(Solution.rangeBitwiseAnd("", 0, 4) == 0)
-print(Solution.rangeBitwiseAnd("", 5, 7) == 4)
-print(Solution.rangeBitwiseAnd("", 120, 127) == 120)
-print(Solution.rangeBitwiseAnd("", 120, 121) == 120)
-print(Solution.rangeBitwiseAnd("", 40, 58) == 32)
+    def rangeBitwiseAndn(self, m: int, n: int) -> int:
+        # Naive O(n) solution
+        returnval = m
+        if m != 0:
+            for x in range(m, n + 1):
+                returnval &= x
+        return returnval
+
+
+m = int(math.pow(2, 30))
+n = 2147483647
+start = time.time()
+#print(Solution.rangeBitwiseAnd("", m, n))
+print(time.time() - start)
+
+start = time.time()
+print(Solution.rangeBitwiseAnds("", m, n))
+print(time.time() - start)
+
+start = time.time()
+#print(Solution.rangeBitwiseAndn("", m, n))
+print(time.time() - start)
