@@ -14,7 +14,6 @@ You are given trust, an array of pairs trust[i] = [a, b] representing that the p
 If the town judge exists and can be identified, return the label of the town judge.  Otherwise, return -1.
 
 
-
 Example 1:
 
 Input: N = 2, trust = [[1,2]]
@@ -41,7 +40,6 @@ Input: N = 4, trust = [[1,3],[1,4],[2,3],[2,4],[4,3]]
 Output: 3
 
 
-
 Note:
 
     1 <= N <= 1000
@@ -52,6 +50,7 @@ Note:
 '''
 
 from typing import List
+
 
 class Solution:
     def findJudge(self, N: int, trust: List[List[int]]) -> int:
@@ -65,6 +64,6 @@ class Solution:
             trust_array[t[0]] -= 1
         print(trust_array)
         for i, t in enumerate(trust_array):
-            if t == N -1:
+            if t == N - 1:
                 return i
         return -1
